@@ -1,0 +1,48 @@
+#main {
+    width: 650px;
+    height: 300px;
+    margin: 0 auto;
+}
+
+#rectTime {
+    width: 315px;
+    height: 60px;
+    color: white;
+    background-color: black;
+    float: left;
+    margin-bottom: 4px;
+}
+
+#rectSaO2 {
+    width: 315px;
+    height: 60px;
+    color: yellow;
+    background-color: green;
+    float: left;
+}
+
+#rectHr {
+    width: 315px;
+    height: 60px;
+    background-color: white;
+    float: left;
+    margin-left: 4px;
+    margin-bottom: 4px;
+}
+
+#rectStatus {
+    width: 315px;
+    height: 60px;
+    float: left;
+    margin-left: 4px;
+}
+
+.yellow_red {
+    color: red;
+    background-color: yellow;
+}
+
+.white_green {
+    color: green;
+    background-color: white;
+}

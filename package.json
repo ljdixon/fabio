@@ -1,17 +1,14 @@
 {
-  "name": "fabio",
+  "name": "allinone",
   "version": "1.0.0",
-  "description": "Node.js app reads data from serial port and pushes to all connected clients via WebSockets.",
-  "main": "index.js",
+  "description": "Node.js app receives data from spawned Python program and pushes to all connected clients via WebSockets.",
+  "main": "allinone.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Leonard Dixon <leonardjdixon@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "n-readlines": "^1.0.0",
-    "serialport": "^8.0.7",
-    "virtual-serialport": "^4.0.1",
     "ws": "^7.2.5"
   }
 }

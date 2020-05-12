@@ -4,15 +4,26 @@
   <meta http-equiv="expires" content="0">
   <meta http-equiv="pragma" content="no-cache">
   <title>Webcam Test</title>
+  <link rel="stylesheet" href="style.css">
   <script language="Javascript">
-    function refreshImage(){
-       rfsh = new Date() ; rfsh = "#"+rfsh.getTime()
-       document.images["time"].src = "/time.png"+rfsh
-       document.images["sao2"].src = "/sao2.png"+rfsh       
-       document.images["hr"].src = "/hr.png"+rfsh
-       document.images["ok"].src = "/ok.png"+rfsh
-       setTimeout("refreshImage()", 1000);
-     }
+    var ws = new WebSocket("ws://"+self.location.hostname+":8080");
+
+    ws.onmessage = function (evt) { 
+      var received_msg = JSON.parse(evt.data);
+      refreshImage(received_msg);
+    };
+
+    function refreshImage(received_msg){
+      document.getElementById("time").textContent=received_msg.time;
+      document.getElementById("sao2").textContent=received_msg.sao2;
+      document.getElementById("hr").textContent=received_msg.hr;
+      document.getElementById("status").textContent=received_msg.status;
+      if(received_msg.status == "values ok") {
+        document.getElementById("status").classList.add("white_green");
+      } else {
+        document.getElementById("status").classList.add("yellow_red");
+      } 
+    }
   </script>
  </head>
  <body style="background-color:#85a960;">
@@ -24,16 +35,13 @@
         width="660" height="500" src="http://192.168.50.1:8081/">
      </iframe>
      <br>
-     <img id="time" name="time" src="time.png" alt="time">
-     <img id="ok" name="ok" src="ok.png" alt="ok" >
-     <br>
-     <img id="sao2" name="sao2" src="sao2.png" alt="sao2" >
-     <img id="hr" name="hr" src="hr.png" alt="hr" >
+     <div id="main">
+      <div id="rectTime">time: <span id="time"></span></div>
+      <div id="rectHr">SaO2: <span id="sao2"></span></div>
+      <div id="rectSaO2">HR: <span id="hr"></span></div>
+      <div id="rectStatus"><span id="status"></span></div>
+     </div>
    </p>
-   <script language="JavaScript">
-     if( document.images )
-     //refreshImage();
-   </script>
   </body>
 </html>
 
